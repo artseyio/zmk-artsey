@@ -35,7 +35,7 @@ jobs:
         run: west zephyr-export
       - name: ARTSEY dtsi File
         if: ${{ always() }}
-        run: cat -n ../artsey.dtsi
+        run: cat -n ${GITHUB_WORKSPACE}/config/artsey.dtsi
       - name: West Build (Corne ARTSEY - Left)
         run: west build -s zmk/app -b nice_nano -- -DSHIELD=corne_artsey_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Corne ARTSEY - Left DTS File

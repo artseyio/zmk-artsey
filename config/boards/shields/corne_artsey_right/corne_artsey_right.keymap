@@ -33,7 +33,7 @@
 #define THUMB_3 20
 
 // Include main artsey.io keymap
-#include "../../../artsey_v0_7.dtsi"
+#include "../../../artsey.dtsi"
 
 / {
 	combos {

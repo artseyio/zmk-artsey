@@ -33,7 +33,7 @@
 #define THUMB_3 20
 
 // Include main artsey.io keymap
-#include "../../../artsey_v0_7.dtsi"
+#include "../../../artsey.dtsi"
 
 / {
 	combos {
@@ -41,5 +41,5 @@
 		chord_bt_clr { key-positions = <THUMB_1 THUMB_3>; bindings = <&bt BT_CLR>; };
 		chord_bt_prv { key-positions = <THUMB_1 THUMB_2>; bindings = <&bt BT_PRV>; };
 		chord_bt_nxt { key-positions = <THUMB_2 THUMB_3>; bindings = <&bt BT_NXT>; };
-        };
+	};
 };
