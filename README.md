@@ -4,7 +4,7 @@ This repo contains the ZMK ARTSEY implementation
 
 ## Prebuilt Firmware
 
-The `Actions` tab of this repository contains the latest builds of the ZMK ARTSEY implementation. You can click on the most recent build, then the `Build` job. In the list of steps you can look for `Archive` entries to download the appropriate firmware image for your board.
+The `Actions` tab of this repository contains the latest builds of the ZMK ARTSEY implementation. You can click on the most recent build, download the `firmware` artifact. It'll be a zip file with all of the ZMK ARTSEY firmware images built by our GitHub Actions.
 
 ## Adding ARTSEY Support
 
