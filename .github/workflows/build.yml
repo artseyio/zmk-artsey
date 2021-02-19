@@ -1,13 +1,20 @@
-on: [push, pull_request, workflow_dispatch]
-
 name: Build
+
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
       image: zmkfirmware/zmk-build-arm:2.4
-    name: Build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - board: nice_nano
+            shield: corne_artsey_left
+          - board: nice_nano
+            shield: corne_artsey_right
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,47 +24,60 @@ jobs:
           cache-name: cache-zephyr-modules
         with:
           path: |
+            bootloader/
             modules/
             tools/
             zephyr/
-            bootloader/
             zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('manifest-dir/west.yml') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: West Init
+        timeout-minutes: 2
+        continue-on-error: true
+      - name: Initialize workspace (west init)
         run: west init -l config
-      - name: West Update
+      - name: Update modules (west update)
         run: west update
-      - name: West Zephyr export
+      - name: Export Zephyr CMake package (west zephyr-export)
         run: west zephyr-export
-      - name: ARTSEY dtsi File
-        if: ${{ always() }}
-        run: cat -n ${GITHUB_WORKSPACE}/config/artsey.dtsi
-      - name: West Build (Corne ARTSEY - Left)
-        run: west build -s zmk/app -b nice_nano -- -DSHIELD=corne_artsey_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Corne ARTSEY - Left DTS File
-        if: ${{ always() }}
-        run: cat -n build/zephyr/nice_nano.dts.pre.tmp
-      - name: Corne ARTSEY - Left Kconfig file
-        run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 corne_artsey_left_nice_nano.uf2
-      - name: Archive (Corne ARTSEY - Left)
+      - name: Prepare variables
+        id: variables
+        run: |
+          if [ -n "${{ matrix.shield }}" ]; then
+            SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
+            ARTIFACT_NAME="${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey"
+          else
+            SHIELD_ARG=
+            ARTIFACT_NAME="${{ matrix.board }}-zmk-artsey"
+          fi
+
+          echo ::set-output name=shield-arg::${SHIELD_ARG}
+          echo ::set-output name=artifact-name::${ARTIFACT_NAME}
+      - name: Build (west build)
+        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: ARTSEY implementation dtsi file
+        if: always()
+        run: cat -n config/artsey.dtsi
+      - name: Generated DTS file
+        if: always()
+        run: cat -n build/zephyr/${{ matrix.board }}.dts.pre.tmp
+      - name: Prep artifact (artsey.dtsi)
+        run: cp config/artsey.dtsi ./artsey.dtsi
+      - name: Prep artifact (${{ matrix.shield }}-${{ matrix.board }}.dts.pre.tmp)
+        run: cp build/zephyr/${{ matrix.board }}.dts.pre.tmp ./${{ matrix.shield }}-${{ matrix.board }}.dts.pre.tmp
+      - name: Prep artifact (${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.hex)
+        run: cp build/zephyr/zmk.hex ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.hex
+      - name: Prep artifact (${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.uf2)
+        run: cp build/zephyr/zmk.uf2 ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.uf2
+      - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: firmware
-          path: corne_artsey_left_nice_nano.uf2
-      - name: West Build (Corne ARTSEY - Right)
-        run: west build --pristine -s zmk/app -b nice_nano -- -DSHIELD=corne_artsey_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Corne ARTSEY - Right Kconfig file
-        run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 corne_artsey_right_nice_nano.uf2
-      - name: Archive (Corne ARTSEY - Right)
-        uses: actions/upload-artifact@v2
-        with:
-          name: firmware
-          path: corne_artsey_right_nice_nano.uf2
+          name: '${{ steps.variables.outputs.artifact-name }}'
+          path: |
+            artsey.dtsi
+            ${{ matrix.shield }}-${{ matrix.board }}.dts.pre.tmp
+            ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.hex
+            ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.uf2
+        continue-on-error: true
