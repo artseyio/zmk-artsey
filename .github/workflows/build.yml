@@ -15,6 +15,8 @@ jobs:
             shield: corne_artsey_left
           - board: nice_nano
             shield: corne_artsey_right
+          - board: nice_nano
+            shield: the_paintbrush
     steps:
       - name: Checkout
         uses: actions/checkout@v2
