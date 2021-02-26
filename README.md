@@ -1,6 +1,6 @@
 # ZMK ARTSEY Implementation
 
-This repo contains the ZMK ARTSEY implementation and pre-built firmware for boards that have been setup to use ARTSEY by the core ARTSEY development team.
+This repo contains the [ZMK](https://zmkfirmware.dev/) ARTSEY implementation and pre-built firmware for boards that have been setup to use ARTSEY by the core ARTSEY development team.
 
 ## Prebuilt Firmware
 
