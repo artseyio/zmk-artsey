@@ -29,3 +29,12 @@
 
 // Include main artsey.io keymap
 #include "../../../artsey.dtsi"
+
+// Manage bluetooth profiles
+/ {
+	combos {
+		compatible = "zmk,combos";
+		chord_bt_nxt { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&bt BT_NXT>; };
+		chord_bt_clr { key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bt BT_CLR>; };
+	};
+};
