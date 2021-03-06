@@ -79,9 +79,44 @@
  * In order to make this keymap flexible, you must setup the number of &none "offsets" to use
  * The defines below should be set in your LOCAL keymap and using the above "NONE([hundreds],[tens],[ones])" macro for filling in the gaps
 *****************************************/
-// #define LEADING_NONES NONE(0,1,0)
+// #define LEADING_NONES NONE(0, 1, 0)
 // #define MIDDLE_NONES NONE(0, 0, 3)
 // #define TRAILING_NONES NONE(0, 1, 0)
+
+/*****************************************
+ * Define custom layer
+ *
+ * You can override this layer by copy/pasting the into your keymap *before* including the artsey.dtsi file
+ * Once added to your keymap you can adjust as you see fit
+*****************************************/
+#if !defined ARTSEY_LAYER_CUSTOM
+#if defined ARTSEY_RIGHT
+#define ARTSEY_LAYER_CUSTOM                                 \
+		custom {                                            \
+			label = "Custom";                               \
+			bindings = <                                    \
+				LEADING_NONES                               \
+				&kp C_MUTE &kp INS   &sk RCTRL &kp C_VOL_UP \
+				MIDDLE_NONES                                \
+				&sk RSHFT  &kp PSCRN &sk RALT  &kp C_VOL_DN \
+				TRAILING_NONES                              \
+			>;                                              \
+		};
+#endif
+#if defined ARTSEY_LEFT
+#define ARTSEY_LAYER_CUSTOM                                 \
+		custom {                                            \
+			label = "Custom";                               \
+			bindings = <                                    \
+				LEADING_NONES                               \
+				&kp C_VOL_UP &sk RCTRL &kp INS   &kp C_MUTE \
+				MIDDLE_NONES                                \
+				&kp C_VOL_DN &sk RALT  &kp PSCRN &sk RSHFT  \
+				TRAILING_NONES                              \
+			>;                                              \
+		};
+#endif
+#endif
 
 /*****************************************
  * Layer IDs used by the ARTSEY keymap
@@ -94,14 +129,19 @@
 #define LAYER_ID_NAVIGATION 4
 #define LAYER_ID_F_ONE_SIX 5
 #define LAYER_ID_F_SEVEN_TWELVE 6
-#define LAYER_ID_MOUSE 7
+#define LAYER_ID_CUSTOM 7
+#define LAYER_ID_MOUSE 8
 
 /*****************************************
  * Define how long it takes for the combos/holds to 'time out'
  * See documentation on "combos" for more detail
  *****************************************/
+#if !defined TIMEOUT_COMBO
 #define TIMEOUT_COMBO 250
+#endif
+#if !defined TIMEOUT_LAYER_HOLD
 #define TIMEOUT_LAYER_HOLD 500
+#endif
 &sk {
 	release-after-ms = <1000>;
 };
@@ -136,22 +176,27 @@
 		combo_z { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R KEY_T KEY_S>; bindings = <&kp Z>; };
 		combo_enter { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_E>; bindings = <&kp ENTER>; };
 		combo_esc { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R KEY_O>; bindings = <&kp ESC>; };
-		combo_single_quote { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y KEY_I>; bindings = <&kp SQT>; };
+		combo_single_quote { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y KEY_I>; bindings = <&kp SQT>; };
 		combo_tab { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R KEY_T KEY_O>; bindings = <&kp TAB>; };
-		combo_dot { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y>; bindings = <&kp PERIOD>; };
+		combo_dot { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y>; bindings = <&kp PERIOD>; };
 		combo_control { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_S>; bindings = <&sk LCTRL>; };
-		combo_comma { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_I>; bindings = <&kp COMMA>; };
+		combo_comma { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_I>; bindings = <&kp COMMA>; };
 		combo_gui { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_Y KEY_S>; bindings = <&sk LGUI>; };
-		combo_slash { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_O>; bindings = <&kp SLASH>; };
+		combo_slash { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_O>; bindings = <&kp SLASH>; };
 		combo_alt { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_I KEY_S>; bindings = <&sk LALT>; };
+		combo_exclamation { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_T KEY_I>; bindings = <&kp EXCL>; };
 		combo_backspace { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_R>; bindings = <&kp BACKSPACE>; };
 		combo_shift { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_R KEY_T KEY_S>; bindings = <&sk LSHFT>; };
 		combo_space { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; };
-		combo_shift_lock { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y KEY_I KEY_O>; bindings = <&kp CAPS>; };
+		combo_shift_lock { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_R KEY_Y>; bindings = <&kp CAPS>; };
+		combo_caps_lock { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_O KEY_I KEY_Y KEY_A>; bindings = <&kp CAPS>; };
 		combo_seven { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R>; bindings = <&kp N7>; };
 		combo_eight { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_R KEY_T>; bindings = <&kp N8>; };
 		combo_nine { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_Y>; bindings = <&kp N9>; };
 		combo_zero { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_Y KEY_I>; bindings = <&kp N0>; };
+		combo_bt_nxt { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&bt BT_NXT>; };
+		combo_bt_clr { key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bt BT_CLR>; };
+		combo_layer_custom { key-positions = <KEY_S KEY_O>; bindings = <&tog LAYER_ID_CUSTOM>; };
 		/* TODO: Setup/Enable once Mouse Keys feature(s) are added to ZMK */
 		//combo_mouse { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_T KEY_Y>; bindings = <&none>; };
 	};
@@ -252,9 +297,9 @@
 			label = "Symbol";
 			bindings = <
 				LEADING_NONES
-				&layer_parentheticals_none LAYER_ID_PARENTHETICALS 0  &kp BSLH  &kp SEMI  &layer_numbers_kp LAYER_ID_NUMBERS GRAVE
+				&layer_parentheticals_kp LAYER_ID_PARENTHETICALS EXCL &kp BSLH  &kp SEMI  &layer_numbers_kp LAYER_ID_NUMBERS GRAVE
 				MIDDLE_NONES
-				&layer_base_none LAYER_ID_BASE 0                      &kp MINUS &kp EQUAL &layer_navigation_none LAYER_ID_NAVIGATION 0
+				&layer_base_kp LAYER_ID_BASE QMARK                    &kp MINUS &kp EQUAL &layer_navigation_none LAYER_ID_NAVIGATION 0
 				TRAILING_NONES
 			>;
 		};
@@ -298,6 +343,7 @@
 				TRAILING_NONES
 			>;
 		};
+		ARTSEY_LAYER_CUSTOM
 		// mouse { /* TODO: Not implemented yet, needs mouse keys in upstream */
 		// 	label = "Mouse";
 		// 	bindings = <
@@ -341,9 +387,9 @@
 			label = "Symbol";
 			bindings = <
 				LEADING_NONES
-				&layer_numbers_kp LAYER_ID_NUMBERS GRAVE                         &kp SEMI  &kp BSLH  &layer_parentheticals_none LAYER_ID_PARENTHETICALS 0
+				&layer_numbers_kp LAYER_ID_NUMBERS GRAVE                         &kp SEMI  &kp BSLH  &layer_parentheticals_kp LAYER_ID_PARENTHETICALS EXCL
 				MIDDLE_NONES
-				&layer_navigation_none LAYER_ID_NAVIGATION 0                     &kp EQUAL &kp MINUS &layer_base_none LAYER_ID_BASE 0
+				&layer_navigation_none LAYER_ID_NAVIGATION 0                     &kp EQUAL &kp MINUS &layer_base_kp LAYER_ID_BASE QMARK
 				TRAILING_NONES
 			>;
 		};
@@ -387,6 +433,7 @@
 				TRAILING_NONES
 			>;
 		};
+		ARTSEY_LAYER_CUSTOM
 		// mouse { /* TODO: Not implemented yet, needs mouse keys in upstream */
 		// 	label = "Mouse";
 		// 	bindings = <
