@@ -21,6 +21,10 @@ jobs:
             shield: corne_5_col_artsey_left
           - board: nice_nano
             shield: corne_5_col_artsey_right
+          - board: bluemicro840_v1
+            shield: bluehand_left
+          - board: bluemicro840_v1
+            shield: bluehand_right
     steps:
       - name: Checkout
         uses: actions/checkout@v2
