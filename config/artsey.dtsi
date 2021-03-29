@@ -317,9 +317,9 @@
 			label = "Nav";
 			bindings = <
 				LEADING_NONES
-				&layer_parentheticals_kp LAYER_ID_PARENTHETICALS HOME &kp UP    &kp END   &layer_numbers_none LAYER_ID_NUMBERS PG_UP
+				&layer_base_kp LAYER_ID_BASE HOME                     &kp UP    &kp END   &kp PG_UP
 				MIDDLE_NONES
-				&layer_symbols_kp LAYER_ID_SYMBOLS LEFT               &kp DOWN  &kp RIGHT &layer_base_none LAYER_ID_BASE PG_DN
+				&kp LEFT                                              &kp DOWN  &kp RIGHT &kp PG_DN
 				TRAILING_NONES
 			>;
 		};
@@ -407,9 +407,9 @@
 			label = "Nav";
 			bindings = <
 				LEADING_NONES
-				&layer_numbers_kp LAYER_ID_NUMBERS PG_UP                         &kp HOME  &kp UP    &layer_parentheticals_kp LAYER_ID_PARENTHETICALS END
+				&kp PG_UP                               &kp HOME  &kp UP    &layer_base_kp LAYER_ID_BASE END
 				MIDDLE_NONES
-				&layer_base_kp LAYER_ID_BASE PG_DN                               &kp LEFT  &kp DOWN  &layer_symbols_kp LAYER_ID_SYMBOLS RIGHT
+				&kp PG_DN                               &kp LEFT  &kp DOWN  &kp RIGHT
 				TRAILING_NONES
 			>;
 		};
