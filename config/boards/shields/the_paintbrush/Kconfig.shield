@@ -1,5 +1,8 @@
 # Copyright (c) 2021 Mike "KemoNine" Crosson
 # SPDX-License-Identifier: MIT
 
-config SHIELD_THE_PAINTBRUSH
-	def_bool $(shields_list_contains,the_paintbrush)
+config SHIELD_THE_PAINTBRUSH_LEFT
+	def_bool $(shields_list_contains,the_paintbrush_left)
+
+config SHIELD_THE_PAINTBRUSH_RIGHT
+	def_bool $(shields_list_contains,the_paintbrush_right)
