@@ -20,6 +20,10 @@ jobs:
           - board: nice_nano
             shield: the_paintbrush_right
           - board: nice_nano
+            shield: artboard_left
+          - board: nice_nano
+            shield: artboard_right
+          - board: nice_nano
             shield: corne_5_col_artsey_left
           - board: nice_nano
             shield: corne_5_col_artsey_right
