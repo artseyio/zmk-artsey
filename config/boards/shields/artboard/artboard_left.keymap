@@ -12,15 +12,15 @@
 #define ARTSEY_LEFT 1
 
 // ARTS Row
-#define KEY_A 0
-#define KEY_R 1
-#define KEY_T 2
-#define KEY_S 3
+#define KEY_A 3
+#define KEY_R 2
+#define KEY_T 1
+#define KEY_S 0
 // EYIO Row
-#define KEY_E 4
-#define KEY_Y 5
-#define KEY_I 6
-#define KEY_O 7
+#define KEY_E 7
+#define KEY_Y 6
+#define KEY_I 5
+#define KEY_O 4
 
 // Define Offsets
 #define LEADING_NONES NONE(0,0,0)
