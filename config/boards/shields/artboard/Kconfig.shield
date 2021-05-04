@@ -1,0 +1,8 @@
+# Copyright (c) 2021 Dennis "depadiernos" Padiernos
+# SPDX-License-Identifier: MIT
+
+config SHIELD_ARTBOARD_LEFT
+	def_bool $(shields_list_contains,artboard_left)
+
+config SHIELD_ARTBOARD_RIGHT
+	def_bool $(shields_list_contains,artboard_right)
