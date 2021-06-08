@@ -183,7 +183,7 @@
 		combo_backspace { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_R>; bindings = <&kp BACKSPACE>; };
 		combo_shift { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_R KEY_T KEY_S>; bindings = <&sk LSHFT>; };
 		combo_space { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; };
-		combo_shift_lock { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_R KEY_Y>; bindings = <&kp CAPS>; };
+		combo_shift_lock { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_R KEY_Y>; bindings = <&kt LSHFT>; };
 		combo_caps_lock { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_O KEY_I KEY_Y KEY_A>; bindings = <&kp CAPS>; };
 		combo_seven { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R>; bindings = <&kp N7>; };
 		combo_eight { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_R KEY_T>; bindings = <&kp N8>; };
