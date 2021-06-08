@@ -84,6 +84,20 @@
 // #define TRAILING_NONES NONE(0, 1, 0)
 
 /*****************************************
+ * Define custom BT layer extra keys
+ *
+ * You can override the 2 blank keys on the BT select layer by copy/pasting the below into your keymap
+ *     *before* including the artsey.dtsfile
+ * Once added to your keymap you can adjust these 2 keys as you see fit
+*****************************************/
+#if !defined ARTSEY_BT_TOP
+#define ARTSEY_BT_TOP &none
+#endif
+#if !defined ARTSEY_BT_BOTTOM
+#define ARTSEY_BT_BOTTOM &none
+#endif
+
+/*****************************************
  * Define custom layer
  *
  * You can override this layer by copy/pasting the into your keymap *before* including the artsey.dtsi file
@@ -127,8 +141,9 @@
 #define LAYER_ID_SYMBOLS 2
 #define LAYER_ID_PARENTHETICALS 3
 #define LAYER_ID_NAVIGATION 4
-#define LAYER_ID_CUSTOM 5
-#define LAYER_ID_MOUSE 6
+#define LAYER_ID_BT_SEL 5
+#define LAYER_ID_CUSTOM 6
+#define LAYER_ID_MOUSE 7
 
 /*****************************************
  * Define how long it takes for the combos/holds to 'time out'
@@ -189,7 +204,7 @@
 		combo_eight { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_R KEY_T>; bindings = <&kp N8>; };
 		combo_nine { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_Y>; bindings = <&kp N9>; };
 		combo_zero { layers = <LAYER_ID_NUMBERS>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_Y KEY_I>; bindings = <&kp N0>; };
-		combo_bt_nxt { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&bt BT_NXT>; };
+		combo_layer_bt_select { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&tog LAYER_ID_BT_SEL>; };
 		combo_bt_clr { key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bt BT_CLR>; };
 		combo_layer_navigation { key-positions = <KEY_R KEY_E KEY_I>; bindings = <&tog LAYER_ID_NAVIGATION>; };
 		/* TODO: Setup/Enable once Mouse Keys feature(s) are added to ZMK */
@@ -282,6 +297,16 @@
 				TRAILING_NONES
 			>;
 		};
+		bt {
+			label = "BT";
+			bindings = <
+				LEADING_NONES
+				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 ARTSEY_BT_TOP
+				MIDDLE_NONES
+				&bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 ARTSEY_BT_BOTTOM
+				TRAILING_NONES
+			>;
+		};
 		ARTSEY_LAYER_CUSTOM
 		// mouse { /* TODO: Not implemented yet, needs mouse keys in upstream */
 		// 	label = "Mouse";
@@ -349,6 +374,16 @@
 				&kp PG_UP                                   &kp HOME  &kp UP    &kp END
 				MIDDLE_NONES
 				&kp PG_DN                                   &kp LEFT  &kp DOWN  &kp RIGHT
+				TRAILING_NONES
+			>;
+		};
+		bt {
+			label = "BT";
+			bindings = <
+				LEADING_NONES
+				ARTSEY_BT_TOP    &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0
+				MIDDLE_NONES
+				ARTSEY_BT_BOTTOM &bt BT_SEL 5 &bt BT_SEL 4 &bt BT_SEL 3
 				TRAILING_NONES
 			>;
 		};
