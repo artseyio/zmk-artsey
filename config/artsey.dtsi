@@ -196,6 +196,7 @@
 		combo_alt { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_I KEY_S>; bindings = <&sk LALT>; };
 		combo_exclamation { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_T KEY_I>; bindings = <&kp EXCL>; };
 		combo_backspace { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_R>; bindings = <&kp BACKSPACE>; };
+		combo_delete { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_I KEY_R>; bindings = <&kp DELETE>; };
 		combo_shift { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_R KEY_T KEY_S>; bindings = <&sk LSHFT>; };
 		combo_space { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; };
 		combo_shift_lock { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_R KEY_Y>; bindings = <&kt LSHFT>; };
