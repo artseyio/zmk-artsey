@@ -6,6 +6,7 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 
 /*****************************************
  * Macros for filling in "&none" in the right places in the keymap for re-use needs
@@ -82,20 +83,6 @@
 // #define LEADING_NONES NONE(0, 1, 0)
 // #define MIDDLE_NONES NONE(0, 0, 3)
 // #define TRAILING_NONES NONE(0, 1, 0)
-
-/*****************************************
- * Define custom BT layer extra keys
- *
- * You can override the 2 blank keys on the BT select layer by copy/pasting the below into your keymap
- *     *before* including the artsey.dtsfile
- * Once added to your keymap you can adjust these 2 keys as you see fit
-*****************************************/
-#if !defined ARTSEY_BT_TOP
-#define ARTSEY_BT_TOP &none
-#endif
-#if !defined ARTSEY_BT_BOTTOM
-#define ARTSEY_BT_BOTTOM &none
-#endif
 
 /*****************************************
  * Define custom layer
@@ -302,9 +289,9 @@
 			label = "BT";
 			bindings = <
 				LEADING_NONES
-				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 ARTSEY_BT_TOP
+				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &out OUT_USB
 				MIDDLE_NONES
-				&bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 ARTSEY_BT_BOTTOM
+				&bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 &out OUT_BLE
 				TRAILING_NONES
 			>;
 		};
@@ -382,9 +369,9 @@
 			label = "BT";
 			bindings = <
 				LEADING_NONES
-				ARTSEY_BT_TOP    &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0
+				&out OUT_USB &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0
 				MIDDLE_NONES
-				ARTSEY_BT_BOTTOM &bt BT_SEL 5 &bt BT_SEL 4 &bt BT_SEL 3
+				&out OUT_BLE &bt BT_SEL 5 &bt BT_SEL 4 &bt BT_SEL 3
 				TRAILING_NONES
 			>;
 		};
