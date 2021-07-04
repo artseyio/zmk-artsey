@@ -6,6 +6,8 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+
 
 /*****************************************
  * Macros for filling in "&none" in the right places in the keymap for re-use needs
@@ -91,7 +93,7 @@
  * Once added to your keymap you can adjust these 2 keys as you see fit
 *****************************************/
 #if !defined ARTSEY_BT_TOP
-#define ARTSEY_BT_TOP &none
+#define ARTSEY_BT_TOP &out OUT_TOG
 #endif
 #if !defined ARTSEY_BT_BOTTOM
 #define ARTSEY_BT_BOTTOM &none
