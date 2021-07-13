@@ -29,11 +29,3 @@
 
 // Include main artsey.io keymap
 #include "../../../artsey.dtsi"
-
-/ {
-	combos {
-		compatible = "zmk,combos";
-		combo_bt_nxt { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&bt BT_NXT>; };
-		combo_bt_clr { key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bt BT_CLR>; };
-	};
-};
