@@ -12,15 +12,15 @@
 #define ARTSEY_LEFT 1
 
 // ARTS Row
-#define KEY_A 7
-#define KEY_R 6
-#define KEY_T 5
-#define KEY_S 4
+#define KEY_A 3
+#define KEY_R 2
+#define KEY_T 1
+#define KEY_S 0
 // EYIO Row
-#define KEY_E 3
-#define KEY_Y 2
-#define KEY_I 1
-#define KEY_O 0
+#define KEY_E 7
+#define KEY_Y 6
+#define KEY_I 5
+#define KEY_O 4
 
 // Define Offsets
 #define LEADING_NONES NONE(0, 0, 0)
@@ -29,11 +29,3 @@
 
 // Include main artsey.io keymap
 #include "../../../artsey.dtsi"
-
-/ {
-	combos {
-		compatible = "zmk,combos";
-		combo_bt_nxt { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&bt BT_NXT>; };
-		combo_bt_clr { key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bt BT_CLR>; };
-	};
-};
