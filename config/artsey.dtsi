@@ -77,6 +77,9 @@
 // #define KEY_Y 5
 // #define KEY_I 6
 // #define KEY_O 7
+// Big artsey F1-12 layer keys for combo
+// #define KEY_F_TOP -1
+// #define KEY_F_BOTTOM -1
 
 /*****************************************
  * Define key position offsets in main keymap
@@ -87,6 +90,11 @@
 // #define LEADING_NONES NONE(0, 1, 0)
 // #define MIDDLE_NONES NONE(0, 0, 3)
 // #define TRAILING_NONES NONE(0, 1, 0)
+// #define BIG_LEADING_NONES NONE(0, 0, 0)
+// #define BIG_BETWEEN_ROW_ONE_TWO_NONES NONE(0, 0, 0)
+// #define BIG_BETWEEN_ROW_TWO_THREE_NONES NONE(0, 0, 0)
+// #define BIG_BETWEEN_ROW_THREE_THUMBS NONE(0, 0, 0)
+// #define BIG_TRAILING_NONES NONE(0, 0, 0)
 
 /*****************************************
  * Define custom BT layer extra keys
@@ -193,7 +201,8 @@
 #define LAYER_ID_NAVIGATION 4
 #define LAYER_ID_BT_SEL 5
 #define LAYER_ID_CUSTOM 6
-#define LAYER_ID_MOUSE 7
+#define LAYER_ID_BIG_SYM 7
+#define LAYER_ID_BIG_FUNCTION 8
 
 /*****************************************
  * Standard ARTSEY combo definitions
@@ -244,6 +253,10 @@
 		combo_layer_bt_select { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&tog LAYER_ID_BT_SEL>; };
 		combo_bt_clr { key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bt BT_CLR>; };
 		combo_layer_navigation { key-positions = <KEY_R KEY_E KEY_I>; bindings = <&tog LAYER_ID_NAVIGATION>; };
+		// Function layer doesn't apply to non-big artsey presently
+		#if defined ARTSEY_BIG
+		combo_layer_functions { key-positions = <KEY_F_TOP KEY_F_BOTTOM>; bindings = <&sl LAYER_ID_BIG_FUNCTION>; };
+		#endif
 	};
 };
 
@@ -279,6 +292,22 @@
 / {
 	keymap {
 		compatible = "zmk,keymap";
+		#if defined ARTSEY_BIG
+		base {
+			label = "*ARTSEY*";
+			bindings = <
+				BIG_LEADING_NONES
+				&kp MINUS            &layer_parentheticals_kp LAYER_ID_PARENTHETICALS ARTSEY_BASE_A    &kp ARTSEY_BASE_R     &kp ARTSEY_BASE_T     &layer_numbers_kp LAYER_ID_NUMBERS ARTSEY_BASE_S
+				BIG_BETWEEN_ROW_ONE_TWO_NONES
+				&kp TAB              &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E                  &kp ARTSEY_BASE_Y     &kp ARTSEY_BASE_I     &layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O
+				BIG_BETWEEN_ROW_TWO_THREE_NONES
+				&kp AT               &kp EQUAL                                             &kp DEL   &sk LCTRL &sk LSHFT
+				BIG_BETWEEN_ROW_THREE_THUMBS
+				&kp ENTER            &kp SPACE                                             &mo LAYER_ID_BIG_SYM
+				BIG_TRAILING_NONES
+			>;
+		};
+		#else
 		base {
 			label = "ARTSEY";
 			bindings = <
@@ -289,6 +318,7 @@
 				TRAILING_NONES
 			>;
 		};
+		#endif
 		numbers {
 			label = "Number";
 			bindings = <
@@ -340,6 +370,36 @@
 			>;
 		};
 		ARTSEY_LAYER_CUSTOM
+		#if defined ARTSEY_BIG
+		big_artsey_symbol {
+			label = "*Symbol*";
+			bindings = <
+				BIG_LEADING_NONES
+				&kp GRAVE &kp HASH  &kp LBRC &kp RBRC &kp CARET
+				BIG_BETWEEN_ROW_ONE_TWO_NONES
+				&kp BSLH  &kp DLLR  &kp LPAR &kp RPAR &kp AMPS
+				BIG_BETWEEN_ROW_TWO_THREE_NONES
+				&kp PIPE  &kp PRCNT &kp LBKT &kp RBKT &kp ASTRK
+				BIG_BETWEEN_ROW_THREE_THUMBS
+				&trans    &kp SEMI  &none
+				BIG_TRAILING_NONES
+			>;
+		};
+		big_artsey_function {
+			label = "*Func*";
+			bindings = <
+				BIG_LEADING_NONES
+				&none  &kp F1 &kp F2  &kp F3  &kp F4
+				BIG_BETWEEN_ROW_ONE_TWO_NONES
+				&none  &kp F5 &kp F6  &kp F7  &kp F8
+				BIG_BETWEEN_ROW_TWO_THREE_NONES
+				&none  &kp F9 &kp F10 &kp F11 &kp F12
+				BIG_BETWEEN_ROW_THREE_THUMBS
+				&trans &none   &none
+				BIG_TRAILING_NONES
+			>;
+		};
+		#endif
 	};
 };
 #endif
@@ -352,6 +412,22 @@
 / {
 	keymap {
 		compatible = "zmk,keymap";
+		#if defined ARTSEY_BIG
+		base {
+			label = "*ARTSEY*";
+			bindings = <
+				BIG_LEADING_NONES
+				&layer_numbers_kp LAYER_ID_NUMBERS ARTSEY_BASE_S                             &kp ARTSEY_BASE_T     &kp ARTSEY_BASE_R     &layer_parentheticals_kp LAYER_ID_PARENTHETICALS ARTSEY_BASE_A &kp MINUS
+				BIG_BETWEEN_ROW_ONE_TWO_NONES
+				&layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O                               &kp ARTSEY_BASE_I     &kp ARTSEY_BASE_Y     &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E               &kp TAB
+				BIG_BETWEEN_ROW_TWO_THREE_NONES
+				&sk LSHFT                                                        &sk LCTRL &kp DEL   &kp EQUAL                                          &kp AT
+				BIG_BETWEEN_ROW_THREE_THUMBS
+				&mo LAYER_ID_BIG_SYM                                             &kp SPACE &kp ENTER
+				BIG_TRAILING_NONES
+			>;
+		};
+		#else
 		base {
 			label = "ARTSEY";
 			bindings = <
@@ -362,6 +438,7 @@
 				TRAILING_NONES
 			>;
 		};
+		#endif
 		numbers {
 			label = "Number";
 			bindings = <
@@ -413,6 +490,36 @@
 			>;
 		};
 		ARTSEY_LAYER_CUSTOM
+		#if defined ARTSEY_BIG
+		big_artsey_symbol {
+			label = "*Symbol*";
+			bindings = <
+				BIG_LEADING_NONES
+				&kp CARET &kp LBRC &kp RBRC &kp HASH  &kp GRAVE
+				BIG_BETWEEN_ROW_ONE_TWO_NONES
+				&kp AMPS  &kp LPAR &kp RPAR &kp DLLR  &kp BSLH
+				BIG_BETWEEN_ROW_TWO_THREE_NONES
+				&kp ASTRK &kp LBKT &kp RBKT &kp PRCNT &kp PIPE
+				BIG_BETWEEN_ROW_THREE_THUMBS
+				&none     &kp SEMI &none
+				BIG_TRAILING_NONES
+			>;
+		};
+		big_artsey_function {
+			label = "*Func*";
+			bindings = <
+				BIG_LEADING_NONES
+				&kp F4  &kp F3  &kp F2  &kp F1  &none
+				BIG_BETWEEN_ROW_ONE_TWO_NONES
+				&kp F8  &kp F7  &kp F6  &kp F5  &none
+				BIG_BETWEEN_ROW_TWO_THREE_NONES
+				&kp F12 &kp F11 &kp F10 &kp F9 &none
+				BIG_BETWEEN_ROW_THREE_THUMBS
+				&none   &none   &none
+				BIG_TRAILING_NONES
+			>;
+		};
+		#endif
 	};
 };
 #endif
