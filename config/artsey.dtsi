@@ -53,6 +53,10 @@
 *****************************************/
 //#define ARTSEY_RIGHT 1
 //#define ARTSEY_LEFT 1
+//#define ARTSEY_BIG 1
+// If you use COLEMAK as your standard keyboard layout, you may want this
+//     This define will make base artsey keys and N more in line with COLEMAK
+//#define ARTSEY_COLEMAK 1
 
 /*****************************************
  * Define key positions used for combos
@@ -83,6 +87,40 @@
 // #define LEADING_NONES NONE(0, 1, 0)
 // #define MIDDLE_NONES NONE(0, 0, 3)
 // #define TRAILING_NONES NONE(0, 1, 0)
+
+/*****************************************
+ * Define custom BT layer extra keys
+ *
+ * You can override the 2 blank keys on the BT select layer by copy/pasting the below into your keymap
+ *     *before* including the artsey.dtsfile
+ * Once added to your keymap you can adjust these 2 keys as you see fit
+*****************************************/
+#if !defined ARTSEY_BT_TOP
+#define ARTSEY_BT_TOP &out OUT_BLE
+#endif
+#if !defined ARTSEY_BT_BOTTOM
+#define ARTSEY_BT_BOTTOM &out OUT_USB
+#endif
+
+/*****************************************
+ * Define how long it takes for the combos/holds to 'time out'
+ * See documentation on "combos" for more detail
+ * Advanced users / fast typers on ARTSEY may want to use the following values
+ *     Hold timeout: 200
+ *     Combo timeout: 180
+ *****************************************/
+#if !defined TIMEOUT_COMBO
+#define TIMEOUT_COMBO 250
+#endif
+#if !defined TIMEOUT_LAYER_HOLD
+#define TIMEOUT_LAYER_HOLD 500
+#endif
+&sk {
+	release-after-ms = <1000>;
+};
+&sl { 
+	release-after-ms = <2000>;
+};
 
 /*****************************************
  * Define custom layer
@@ -120,6 +158,31 @@
 #endif
 
 /*****************************************
+ * Define base layer chars for 'standard ARTSEY' or 'COLEMAK' inspired (you can add more by following the pattern below)
+ * Turn on the ARTSEY_COLEMAK definition above if you want this change
+ *****************************************/
+#define ARTSEY_BASE_A A
+#define ARTSEY_BASE_R R
+#define ARTSEY_BASE_T T
+#define ARTSEY_BASE_S S
+#define ARTSEY_BASE_E E
+#define ARTSEY_BASE_Y Y
+#define ARTSEY_BASE_I I
+#define ARTSEY_BASE_O O
+#define ARTSEY_COMBO_N N
+#if ARTSEY_COLEMAK
+#define ARTSEY_BASE_A T
+#define ARTSEY_BASE_R S
+#define ARTSEY_BASE_T R
+#define ARTSEY_BASE_S A
+#define ARTSEY_BASE_E N
+#define ARTSEY_BASE_Y E
+#define ARTSEY_BASE_I I
+#define ARTSEY_BASE_O O
+#define ARTSEY_COMBO_N Y
+#endif
+
+/*****************************************
  * Layer IDs used by the ARTSEY keymap
  * Do NOT change these and do NOT change the order of the layers as shown below
  *****************************************/
@@ -133,20 +196,6 @@
 #define LAYER_ID_MOUSE 7
 
 /*****************************************
- * Define how long it takes for the combos/holds to 'time out'
- * See documentation on "combos" for more detail
- *****************************************/
-#if !defined TIMEOUT_COMBO
-#define TIMEOUT_COMBO 250
-#endif
-#if !defined TIMEOUT_LAYER_HOLD
-#define TIMEOUT_LAYER_HOLD 500
-#endif
-&sk {
-	release-after-ms = <1000>;
-};
-
-/*****************************************
  * Standard ARTSEY combo definitions
  * These should NOT be changed and are global in scope
  *****************************************/
@@ -156,7 +205,7 @@
 		combo_b { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_O>; bindings = <&kp B>; };
 		combo_m { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_Y KEY_I KEY_O>; bindings = <&kp M>; };
 		combo_c { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_Y>; bindings = <&kp C>; };
-		combo_n { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_I KEY_O>; bindings = <&kp N>; };
+		combo_n { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_I KEY_O>; bindings = <&kp ARTSEY_COMBO_N>; };
 		combo_d { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R KEY_T>; bindings = <&kp D>; };
 		combo_p { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_I KEY_O>; bindings = <&kp P>; };
 		combo_f { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R>; bindings = <&kp F>; };
@@ -195,8 +244,6 @@
 		combo_layer_bt_select { key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&tog LAYER_ID_BT_SEL>; };
 		combo_bt_clr { key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bt BT_CLR>; };
 		combo_layer_navigation { key-positions = <KEY_R KEY_E KEY_I>; bindings = <&tog LAYER_ID_NAVIGATION>; };
-		/* TODO: Setup/Enable once Mouse Keys feature(s) are added to ZMK */
-		//combo_mouse { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_T KEY_Y>; bindings = <&none>; };
 	};
 };
 
@@ -221,9 +268,6 @@
 		layer_custom_kp: layer_custom_kp { compatible = "zmk,behavior-hold-tap"; label = "layer_custom_kp";
 						#binding-cells = <2>; tapping_term_ms = <TIMEOUT_LAYER_HOLD>; flavor = "tap-preferred";
 						bindings = <&mo>, <&kp>; };
-		layer_mouse_kp: layer_mouse_kp { compatible = "zmk,behavior-hold-tap"; label = "layer_mouse_kp";
-						#binding-cells = <2>; tapping_term_ms = <TIMEOUT_LAYER_HOLD>; flavor = "tap-preferred";
-						bindings = <&mo>, <&kp>; };
 	};
 };
 
@@ -239,9 +283,9 @@
 			label = "ARTSEY";
 			bindings = <
 				LEADING_NONES
-				&layer_parentheticals_kp LAYER_ID_PARENTHETICALS A  &kp R     &kp T     &layer_numbers_kp LAYER_ID_NUMBERS S
+				&layer_parentheticals_kp LAYER_ID_PARENTHETICALS ARTSEY_BASE_A  &kp ARTSEY_BASE_R     &kp ARTSEY_BASE_T     &layer_numbers_kp LAYER_ID_NUMBERS ARTSEY_BASE_S
 				MIDDLE_NONES
-				&layer_symbols_kp LAYER_ID_SYMBOLS E                &kp Y     &kp I     &layer_custom_kp LAYER_ID_CUSTOM O
+				&layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E                &kp ARTSEY_BASE_Y     &kp ARTSEY_BASE_I     &layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O
 				TRAILING_NONES
 			>;
 		};
@@ -289,20 +333,13 @@
 			label = "BT";
 			bindings = <
 				LEADING_NONES
-				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &out OUT_USB
+				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 ARTSEY_BT_TOP
 				MIDDLE_NONES
-				&bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 &out OUT_BLE
+				&bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 ARTSEY_BT_BOTTOM
 				TRAILING_NONES
 			>;
 		};
 		ARTSEY_LAYER_CUSTOM
-		// mouse { /* TODO: Not implemented yet, needs mouse keys in upstream */
-		// 	label = "Mouse";
-		// 	bindings = <
-		// 		&none                                                 &none     &none     &none
-		// 		&none                                                 &none     &none     &none
-		// 	>;
-		// };
 	};
 };
 #endif
@@ -319,9 +356,9 @@
 			label = "ARTSEY";
 			bindings = <
 				LEADING_NONES
-				&layer_numbers_kp LAYER_ID_NUMBERS S        &kp T     &kp R     &layer_parentheticals_kp LAYER_ID_PARENTHETICALS A
+				&layer_numbers_kp LAYER_ID_NUMBERS ARTSEY_BASE_S        &kp ARTSEY_BASE_T     &kp ARTSEY_BASE_R     &layer_parentheticals_kp LAYER_ID_PARENTHETICALS ARTSEY_BASE_A
 				MIDDLE_NONES
-				&layer_custom_kp LAYER_ID_CUSTOM O          &kp I     &kp Y     &layer_symbols_kp LAYER_ID_SYMBOLS E
+				&layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O          &kp ARTSEY_BASE_I     &kp ARTSEY_BASE_Y     &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E
 				TRAILING_NONES
 			>;
 		};
@@ -369,20 +406,13 @@
 			label = "BT";
 			bindings = <
 				LEADING_NONES
-				&out OUT_USB &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0
+				ARTSEY_BT_TOP    &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0
 				MIDDLE_NONES
-				&out OUT_BLE &bt BT_SEL 5 &bt BT_SEL 4 &bt BT_SEL 3
+				ARTSEY_BT_BOTTOM &bt BT_SEL 5 &bt BT_SEL 4 &bt BT_SEL 3
 				TRAILING_NONES
 			>;
 		};
 		ARTSEY_LAYER_CUSTOM
-		// mouse { /* TODO: Not implemented yet, needs mouse keys in upstream */
-		// 	label = "Mouse";
-		// 	bindings = <
-		// 		&none                                                 &none     &none     &none
-		// 		&none                                                 &none     &none     &none
-		// 	>;
-		// };
 	};
 };
 #endif
