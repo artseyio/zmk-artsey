@@ -281,6 +281,9 @@
 		layer_custom_kp: layer_custom_kp { compatible = "zmk,behavior-hold-tap"; label = "layer_custom_kp";
 						#binding-cells = <2>; tapping_term_ms = <TIMEOUT_LAYER_HOLD>; flavor = "tap-preferred";
 						bindings = <&mo>, <&kp>; };
+		ctrl_alt_kp: ctrl_alt_kp { compatible = "zmk,behavior-hold-tap"; label = "ctrl_alt_kp";
+						#binding-cells = <2>; tapping_term_ms = <TIMEOUT_LAYER_HOLD>; flavor = "tap-preferred";
+						bindings = <&sk>, <&sk>; };
 	};
 };
 
@@ -299,11 +302,11 @@
 				BIG_LEADING_NONES
 				&kp MINUS            &layer_parentheticals_kp LAYER_ID_PARENTHETICALS ARTSEY_BASE_A    &kp ARTSEY_BASE_R     &kp ARTSEY_BASE_T     &layer_numbers_kp LAYER_ID_NUMBERS ARTSEY_BASE_S
 				BIG_BETWEEN_ROW_ONE_TWO_NONES
-				&kp TAB              &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E                  &kp ARTSEY_BASE_Y     &kp ARTSEY_BASE_I     &layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O
+				&sk LSHFT            &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E                  &kp ARTSEY_BASE_Y     &kp ARTSEY_BASE_I     &layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O
 				BIG_BETWEEN_ROW_TWO_THREE_NONES
-				&kp AT               &kp EQUAL                                             &kp DEL   &sk LCTRL &sk LSHFT
+				&kp TAB              &kp EQUAL                                                         &kp DEL               &kp AMPS              &ctrl_alt_kp LALT LCTRL
 				BIG_BETWEEN_ROW_THREE_THUMBS
-				&kp ENTER            &kp SPACE                                             &mo LAYER_ID_BIG_SYM
+				&kp ENTER            &kp SPACE                                                         &mo LAYER_ID_BIG_SYM
 				BIG_TRAILING_NONES
 			>;
 		};
@@ -417,13 +420,13 @@
 			label = "*ARTSEY*";
 			bindings = <
 				BIG_LEADING_NONES
-				&layer_numbers_kp LAYER_ID_NUMBERS ARTSEY_BASE_S                             &kp ARTSEY_BASE_T     &kp ARTSEY_BASE_R     &layer_parentheticals_kp LAYER_ID_PARENTHETICALS ARTSEY_BASE_A &kp MINUS
+				&layer_numbers_kp LAYER_ID_NUMBERS ARTSEY_BASE_S    &kp ARTSEY_BASE_T     &kp ARTSEY_BASE_R     &layer_parentheticals_kp LAYER_ID_PARENTHETICALS ARTSEY_BASE_A &kp MINUS
 				BIG_BETWEEN_ROW_ONE_TWO_NONES
-				&layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O                               &kp ARTSEY_BASE_I     &kp ARTSEY_BASE_Y     &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E               &kp TAB
+				&layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O      &kp ARTSEY_BASE_I     &kp ARTSEY_BASE_Y     &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E               &sk LSHFT
 				BIG_BETWEEN_ROW_TWO_THREE_NONES
-				&sk LSHFT                                                        &sk LCTRL &kp DEL   &kp EQUAL                                          &kp AT
+				&ctrl_alt_kp LALT LCTRL                             &kp AMPS              &kp DEL               &kp EQUAL                                                      &kp TAB
 				BIG_BETWEEN_ROW_THREE_THUMBS
-				&mo LAYER_ID_BIG_SYM                                             &kp SPACE &kp ENTER
+				&mo LAYER_ID_BIG_SYM                                &kp SPACE             &kp ENTER
 				BIG_TRAILING_NONES
 			>;
 		};
