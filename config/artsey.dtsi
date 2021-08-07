@@ -224,9 +224,9 @@
 		combo_esc { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R KEY_O>; bindings = <&kp ESC>; };
 		combo_single_quote { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y KEY_I>; bindings = <&kp SQT>; };
 		combo_tab { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_R KEY_T KEY_O>; bindings = <&kp TAB>; };
-		combo_dot { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y>; bindings = <&kp PERIOD>; };
+		combo_comma { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_Y>; bindings = <&kp COMMA>; };
 		combo_control { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_E KEY_S>; bindings = <&sk LCTRL>; };
-		combo_comma { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_I>; bindings = <&kp COMMA>; };
+		combo_period { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_I>; bindings = <&kp PERIOD>; };
 		combo_gui { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_Y KEY_S>; bindings = <&sk LGUI>; };
 		combo_slash { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_A KEY_O>; bindings = <&kp SLASH>; };
 		combo_alt { timeout-ms = <TIMEOUT_COMBO>; key-positions = <KEY_I KEY_S>; bindings = <&sk LALT>; };
