@@ -113,13 +113,14 @@
 /*****************************************
  * Define how long it takes for the combos/holds to 'time out'
  * See documentation on "combos" for more detail
-
+ * THE COMBO TIMEOUTS MUST BE THE SAME
+ *    https://github.com/zmkfirmware/zmk/issues/905
  *****************************************/
 #if !defined TIMEOUT_COMBO_2
-#define TIMEOUT_COMBO_2 125
+#define TIMEOUT_COMBO_2 175
 #endif
 #if !defined TIMEOUT_COMBO_3
-#define TIMEOUT_COMBO_3 150
+#define TIMEOUT_COMBO_3 175
 #endif
 #if !defined TIMEOUT_COMBO_4
 #define TIMEOUT_COMBO_4 175
@@ -327,7 +328,7 @@
 				BIG_BETWEEN_ROW_ONE_TWO_NONES
 				&sk LSHFT            &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E                  &kp ARTSEY_BASE_Y     &kp ARTSEY_BASE_I     &layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O
 				BIG_BETWEEN_ROW_TWO_THREE_NONES
-				&kp TAB              &kp EQUAL                                                         &kp DEL               &kp AMPS              &ctrl_alt_kp LALT LCTRL
+				&kp TAB              &kp EQUAL                                                         &kp DEL               &kp AT                &ctrl_alt_kp LALT LCTRL
 				BIG_BETWEEN_ROW_THREE_THUMBS
 				&kp ENTER            &kp SPACE                                                         &mo LAYER_ID_BIG_SYM
 				BIG_TRAILING_NONES
@@ -447,7 +448,7 @@
 				BIG_BETWEEN_ROW_ONE_TWO_NONES
 				&layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O      &kp ARTSEY_BASE_I     &kp ARTSEY_BASE_Y     &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E               &sk LSHFT
 				BIG_BETWEEN_ROW_TWO_THREE_NONES
-				&ctrl_alt_kp LALT LCTRL                             &kp AMPS              &kp DEL               &kp EQUAL                                                      &kp TAB
+				&ctrl_alt_kp LALT LCTRL                             &kp AT                &kp DEL               &kp EQUAL                                                      &kp TAB
 				BIG_BETWEEN_ROW_THREE_THUMBS
 				&mo LAYER_ID_BIG_SYM                                &kp SPACE             &kp ENTER
 				BIG_TRAILING_NONES
