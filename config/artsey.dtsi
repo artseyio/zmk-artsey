@@ -343,6 +343,9 @@
 				MIDDLE_NONES
 				&layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E                &kp ARTSEY_BASE_Y     &kp ARTSEY_BASE_I     &layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O
 				TRAILING_NONES
+				#if defined CUSTOM_THUMB
+				CUSTOM_THUMB
+				#endif
 			>;
 		};
 		#endif
@@ -463,6 +466,9 @@
 				MIDDLE_NONES
 				&layer_custom_kp LAYER_ID_CUSTOM ARTSEY_BASE_O          &kp ARTSEY_BASE_I     &kp ARTSEY_BASE_Y     &layer_symbols_kp LAYER_ID_SYMBOLS ARTSEY_BASE_E
 				TRAILING_NONES
+				#if defined CUSTOM_THUMB
+				CUSTOM_THUMB
+				#endif
 			>;
 		};
 		#endif
