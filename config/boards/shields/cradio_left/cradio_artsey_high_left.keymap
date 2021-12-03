@@ -25,7 +25,7 @@
 // Define Offsets
 #define LEADING_NONES NONE(0,0,0)
 #define MIDDLE_NONES NONE(0,0,1)
-#define TRAILING_NONES NONE(0,0,6)
+#define TRAILING_NONES NONE(0,0,8)
 
 // Include main artsey.io keymap
 #include "../../../artsey.dtsi"
