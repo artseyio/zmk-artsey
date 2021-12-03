@@ -55,6 +55,10 @@ jobs:
             shield: the_paintbrush_left_tsraneio
           - board: nice_nano_v2
             shield: the_paintbrush_right_tsraneio
+          - board: nice_nano_v2
+            shield: cradio_artsey_high_left
+          - board: nice_nano_v2
+            shield: cradio_artsey_low_left
     steps:
       - name: Checkout
         uses: actions/checkout@v2
