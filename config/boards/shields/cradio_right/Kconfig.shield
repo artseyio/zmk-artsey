@@ -1,0 +1,8 @@
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+config SHIELD_CRADIO_ARTSEY_RIGHT
+	def_bool $(shields_list_contains,cradio_artsey_right)
+
+config SHIELD_CRADIO_ARTSEY_THUMB_RIGHT
+	def_bool $(shields_list_contains,cradio_artsey_thumb_right)
