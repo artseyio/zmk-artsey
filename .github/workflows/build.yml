@@ -124,6 +124,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     name: Create Release
+    needs: build
     steps:
       - uses: actions/download-artifact@v2
         with:
