@@ -108,10 +108,16 @@ jobs:
       - name: List files to include in release
         if: always()
         run: ls -R release/
+      - name: Create zip files directory
+        if: always()
+        run: mkdir release/zips
+      - name: Zip all firmware files for release
+        if: always()
+        run: cd release && for folder in ./*; do olderName=$(basename $folder); zip -r zips/$folderName.zip $folderName; done
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release/**.zip"
+          artifacts: "release/zips/*"
           allowUpdates: true
           artifactErrorsFailBuild: true
           body: ${{ steps.release_text.outputs.release_text }}
