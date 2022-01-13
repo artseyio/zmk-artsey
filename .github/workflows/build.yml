@@ -128,7 +128,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          path: /release/zmk-artsey/
+          path: release
       - name: Get current date/time
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M')"
@@ -143,7 +143,7 @@ jobs:
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "/release/zmk-artsey/*"
+          artifacts: "release/*"
           allowUpdates: true
           artifactErrorsFailBuild: true
           body: ${{ steps.release_text.outputs.release_text }}
