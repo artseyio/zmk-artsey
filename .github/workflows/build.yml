@@ -114,7 +114,7 @@ jobs:
           artifacts: "zips/*"
           allowUpdates: false
           artifactErrorsFailBuild: true
-          commit: latest
+          commit: main
           tag: ${{ steps.date.outputs.date }}
           body: ${{ steps.release_text.outputs.release_text }}
           name: "ARTSEY Firmware Files (${{ steps.date.outputs.date }})"
