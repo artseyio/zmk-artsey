@@ -108,12 +108,12 @@ jobs:
       - name: List files to include in release
         if: always()
         run: ls -R release/
-      - name: Create zip files directory
+      - name: Create zip files directory for individual board assets
         if: always()
-        run: mkdir release/zips
+        run: mkdir zips
       - name: Zip all firmware files for release
         if: always()
-        run: cd release && for folder in ./*; do olderName=$(basename $folder); zip -r zips/$folderName.zip $folderName; done
+        run: cd release && for folder in ./*; do echo $folder; zip -r ../../zips/${folder}.zip ${folder}/; done && cd ..
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
