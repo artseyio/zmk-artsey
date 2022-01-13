@@ -121,3 +121,31 @@ jobs:
             ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.hex
             ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.uf2
         continue-on-error: true
+  release:
+    runs-on: ubuntu-latest
+    name: Create Release
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          path: /release/zmk-artsey/
+      - name: Get current date/time
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M')"
+      - name: Generate release text
+        id: release_text
+        run: >
+          echo "::set-output name=release_text::$(echo '<b>Precompiled firmware files for ARTSEY</b><br><br>
+          Download a firmware file by expanding "Assets", right clicking, and choosing "Save File As" or "Save Link As".
+          <br>${{ github.event.inputs.releaseBody }}
+          <br>Released on ${{ steps.date.outputs.date }}.
+          <br><br>${{ steps.docker_build.outputs.commits }}')"
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "/release/zmk-artsey/*"
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          body: ${{ steps.release_text.outputs.release_text }}
+          tag: "latest"
+          name: "ARTSEY Firmware Files"
+          token: ${{ secrets.GITHUB_TOKEN }}
