@@ -157,5 +157,6 @@ jobs:
           allowUpdates: true
           artifactErrorsFailBuild: true
           body: ${{ steps.release_text.outputs.release_text }}
+          tag: "latest"
           name: "ARTSEY Firmware Files"
           token: ${{ secrets.GITHUB_TOKEN }}
