@@ -121,3 +121,43 @@ jobs:
             ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.hex
             ${{ matrix.shield }}-${{ matrix.board }}-zmk-artsey.uf2
         continue-on-error: true
+  release:
+    runs-on: ubuntu-latest
+    name: Create Release
+    needs: build
+    steps:
+      - name: Get current date/time
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M')"
+      - name: Generate release text
+        id: release_text
+        run: >
+          echo "::set-output name=release_text::$(echo '<b>Precompiled firmware files for ARTSEY</b><br><br>
+          Download a firmware file by expanding "Assets", right clicking, and choosing "Save File As" or "Save Link As".
+          <br>${{ github.event.inputs.releaseBody }}
+          <br>Released on ${{ steps.date.outputs.date }}.
+          <br><br>${{ steps.docker_build.outputs.commits }}')"
+      - name: Download build artifacts for release
+        uses: actions/download-artifact@v2
+        with:
+          path: release
+      - name: List files to include in release
+        if: always()
+        run: ls -R release/
+      - name: Create zip files directory for individual board assets
+        if: always()
+        run: mkdir zips
+      - name: Zip all firmware files for release
+        if: always()
+        run: cd release && for folder in ./*; do echo $folder; zip -r ../zips/${folder}.zip ${folder}/; done && cd ..
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "zips/*"
+          allowUpdates: false
+          artifactErrorsFailBuild: true
+          commit: main
+          tag: ${{ steps.date.outputs.date }}
+          body: ${{ steps.release_text.outputs.release_text }}
+          name: ${{ steps.date.outputs.date }}
+          token: ${{ secrets.GITHUB_TOKEN }}
