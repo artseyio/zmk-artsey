@@ -113,7 +113,7 @@ jobs:
         run: mkdir zips
       - name: Zip all firmware files for release
         if: always()
-        run: cd release && for folder in ./*; do echo $folder; zip -r ../../zips/${folder}.zip ${folder}/; done && cd ..
+        run: cd release && for folder in ./*; do echo $folder; zip -r ../zips/${folder}.zip ${folder}/; done && cd ..
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
