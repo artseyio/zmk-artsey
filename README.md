@@ -4,7 +4,7 @@ This repo contains the [ZMK](https://zmkfirmware.dev/) ARTSEY implementation and
 
 ## Prebuilt Firmware
 
-The `Actions` tab of this repository contains the latest builds of the ZMK ARTSEY implementation. You can click on the most recent build and download the appropriate artifact for your MCU + board combination. Inside the zip file will be the necessary file for flashing your MCU.
+The `Releases` area of this repository contains the latest builds of the ZMK ARTSEY implementation. You can click on the most recent release and download the appropriate artifact for your MCU + board combination. Inside the zip file will be the necessary file for flashing your MCU.
 
 ### Firmware Files
 

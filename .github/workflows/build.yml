@@ -112,7 +112,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "zips/*"
-          allowUpdates: true
+          allowUpdates: false
           artifactErrorsFailBuild: true
           body: ${{ steps.release_text.outputs.release_text }}
           tag: "latest"
