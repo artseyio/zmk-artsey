@@ -117,5 +117,5 @@ jobs:
           commit: main
           tag: ${{ steps.date.outputs.date }}
           body: ${{ steps.release_text.outputs.release_text }}
-          name: "${{ steps.date.outputs.date }}
+          name: ${{ steps.date.outputs.date }}
           token: ${{ secrets.GITHUB_TOKEN }}
