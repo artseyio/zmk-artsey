@@ -34,11 +34,8 @@
 		custom {                                                       \
 			label = "Custom";                                          \
 			bindings = <                                               \
-				LEADING_NONES                                          \
-				&kp Q    &kp W  &kp E   &kp R \
-				MIDDLE_NONES                                           \
-				&kp A    &kp S  &kp D   &kp F  \
-				TRAILING_NONES                                         \
+				&kp Q    &kp W  &kp E   &kp R                          \
+				&kp A    &kp S  &kp D   &kp F                          \
 			>;                                                         \
 		};
 
