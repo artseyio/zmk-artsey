@@ -27,7 +27,7 @@
 #define MIDDLE_NONES NONE(0, 0, 0)
 #define TRAILING_NONES NONE(0, 0, 0)
 
-#define COMBO_LAYER_FILTER 1 2 3 4 5 7 8
+#define COMBO_LAYER_FILTER 0 1 2 3 4 5 7 8
 
 #define TIMEOUT_COMBO_CUSTOM_LAYER 25
 #define ARTSEY_LAYER_CUSTOM                                            \
