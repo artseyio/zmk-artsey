@@ -41,7 +41,6 @@
 				TRAILING_NONES                                         \
 			>;                                                         \
 		};
-#endif
 
 // Include main artsey.io keymap
 #include "../../../artsey.dtsi"
