@@ -293,6 +293,13 @@
 
 		combo_z         { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_A KEY_R KEY_T KEY_S>; bindings = <&kp Z>; };
 		combo_caps_lock { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_O KEY_I KEY_Y KEY_A>; bindings = <&kp CAPS>; };
+        
+		/*****************************************
+		 * Custom Combos
+		 *****************************************/
+        #if defined CUSTOM_COMBOS
+        CUSTOM_COMBOS
+        #endif    
 	};
 };
 
