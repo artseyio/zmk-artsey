@@ -27,5 +27,21 @@
 #define MIDDLE_NONES NONE(0, 0, 0)
 #define TRAILING_NONES NONE(0, 0, 0)
 
+#define COMBO_LAYER_FILTER 1 2 3 4 5 7 8
+
+#define TIMEOUT_COMBO_CUSTOM_LAYER 25
+#define ARTSEY_LAYER_CUSTOM                                            \
+		custom {                                                       \
+			label = "Custom";                                          \
+			bindings = <                                               \
+				LEADING_NONES                                          \
+				&kp Q    &kp W  &kp E   &kp R \
+				MIDDLE_NONES                                           \
+				&kp A    &kp S  &kp D   &kp F  \
+				TRAILING_NONES                                         \
+			>;                                                         \
+		};
+#endif
+
 // Include main artsey.io keymap
 #include "../../../artsey.dtsi"
