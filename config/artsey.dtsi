@@ -232,7 +232,7 @@
 		 *****************************************/
 		// Function layer doesn't apply to non-big artsey presently
 		#if defined ARTSEY_BIG
-		combo_layer_functions { layers = <COMBO_LAYER_FILTER>; key-positions = <KEY_F_TOP KEY_F_BOTTOM>; bindings = <&sl LAYER_ID_BIG_FUNCTION>; };
+		combo_layer_functions { layers = <GLOBAL_COMBO_LAYER_FILTER>; key-positions = <KEY_F_TOP KEY_F_BOTTOM>; bindings = <&sl LAYER_ID_BIG_FUNCTION>; };
 		#endif
 		combo_enter      { layers = <GLOBAL_COMBO_LAYER_FILTER>; timeout-ms = <TIMEOUT_COMBO_2>; key-positions = <KEY_A KEY_E>; bindings = <&kp ENTER>; };
 		combo_control    { layers = <GLOBAL_COMBO_LAYER_FILTER>; timeout-ms = <TIMEOUT_COMBO_2>; key-positions = <KEY_E KEY_S>; bindings = <&sk LCTRL>; };
