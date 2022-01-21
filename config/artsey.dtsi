@@ -125,6 +125,9 @@
 #if !defined TIMEOUT_COMBO_4
 #define TIMEOUT_COMBO_4 175
 #endif
+#if !defined TIMEOUT_COMBO_CUSTOM_LAYER
+#define TIMEOUT_COMBO_CUSTOM_LAYER 175
+#endif
 #if !defined TIMEOUT_LAYER_HOLD
 #define TIMEOUT_LAYER_HOLD 200
 #endif
@@ -143,13 +146,7 @@
  *
  * You can override this layer by copy/pasting the into your keymap *before* including the artsey.dtsi file
  * Once added to your keymap you can adjust as you see fit.
- * There is also the TIMEOUT_COMBO_CUSTOM_LAYER variable that can be tweaked for the timeout on toggling the
- *    custom layer
 *****************************************/
-#if !defined TIMEOUT_COMBO_CUSTOM_LAYER
-#define TIMEOUT_COMBO_CUSTOM_LAYER 175
-#endif
-
 #if !defined ARTSEY_LAYER_CUSTOM
 #if defined ARTSEY_RIGHT
 #define ARTSEY_LAYER_CUSTOM                                            \
@@ -219,8 +216,8 @@
 #define LAYER_ID_BIG_SYM 7
 #define LAYER_ID_BIG_FUNCTION 8
 
-#if !defined COMBO_LAYER_FILTER
-#define COMBO_LAYER_FILTER 0 1 2 3 4 5 6 7 8
+#if !defined GLOBAL_COMBO_LAYER_FILTER
+#define GLOBAL_COMBO_LAYER_FILTER 0 1 2 3 4 5 6 7 8
 #endif
 
 /*****************************************
