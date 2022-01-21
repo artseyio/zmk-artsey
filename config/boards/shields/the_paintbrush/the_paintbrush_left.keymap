@@ -42,6 +42,7 @@
 #define GLOBAL_COMBO_LAYER_FILTER 0 1 2 3 4 5 7 8
 
 #define TIMEOUT_COMBO_CUSTOM_LAYER 25
+
 #define ARTSEY_LAYER_CUSTOM                                            \
 		custom {                                                       \
 			label = "Custom";                                          \
@@ -51,7 +52,7 @@
 			>;                                                         \
 		};
 
-#define CUSTOM_COMBOS \
+#define CUSTOM_COMBOS                                                  \
     custom_combo_t      { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_R>;             bindings = <&kp T>;     }; \
     custom_combo_g      { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_E KEY_Y>;             bindings = <&kp G>;     }; \
     custom_combo_esc    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_R KEY_O>;       bindings = <&kp ESC>;   }; \
