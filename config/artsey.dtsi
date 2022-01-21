@@ -295,7 +295,7 @@
 		 * Custom Combos
 		 *****************************************/
         #if defined CUSTOM_COMBOS
-        CUSTOM_COMBOS
+          CUSTOM_COMBOS
         #endif    
 	};
 };
