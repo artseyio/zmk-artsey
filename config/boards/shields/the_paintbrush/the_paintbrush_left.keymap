@@ -22,26 +22,42 @@
 #define KEY_I 5
 #define KEY_O 4
 
+//Copied from the base file for reference only
+#define LAYER_ID_GLOBAL -1
+#define LAYER_ID_BASE 0
+#define LAYER_ID_NUMBERS 1
+#define LAYER_ID_SYMBOLS 2
+#define LAYER_ID_PARENTHETICALS 3
+#define LAYER_ID_NAVIGATION 4
+#define LAYER_ID_BT_SEL 5
+#define LAYER_ID_CUSTOM 6
+#define LAYER_ID_BIG_SYM 7
+#define LAYER_ID_BIG_FUNCTION 8
+
 // Define Offsets
 #define LEADING_NONES NONE(0,0,0)
 #define MIDDLE_NONES NONE(0, 0, 0)
 #define TRAILING_NONES NONE(0, 0, 0)
 
-#define COMBO_LAYER_FILTER 1 2 3 4 5 7 8
+#define GLOBAL_COMBO_LAYER_FILTER 0 1 2 3 4 5 7 8
 
 #define TIMEOUT_COMBO_CUSTOM_LAYER 25
-#define ARTSEY_LAYER_CUSTOM                                            \
-		custom {                                                       \
-			label = "Custom";                                          \
-			bindings = <                                               \
-				LEADING_NONES                                          \
-				&kp Q    &kp W  &kp E   &kp R \
-				MIDDLE_NONES                                           \
-				&kp A    &kp S  &kp D   &kp F  \
-				TRAILING_NONES                                         \
-			>;                                                         \
+
+#define ARTSEY_LAYER_CUSTOM                                             \
+    custom {                                                            \
+			label = "Custom";                                           \
+			bindings = <                                                \
+				&kp TAB      &kp Q  &kp W   &kp E                       \
+				&kp LCTRL    &kp A  &kp S   &kp D                       \
+                >;                                                      \
 		};
-#endif
+
+#define CUSTOM_COMBOS \
+    custom_combo_esc    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_R KEY_O>;       bindings = <&kp ESC>;   }; \
+    custom_combo_return { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_E>;             bindings = <&kp ENTER>; }; \
+    custom_combo_space  { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; }; \
+    custom_combo_t      { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_R>;             bindings = <&kp T>;     }; \
+    custom_combo_g      { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_E KEY_Y>;             bindings = <&kp G>;     };
 
 // Include main artsey.io keymap
 #include "../../../artsey.dtsi"
