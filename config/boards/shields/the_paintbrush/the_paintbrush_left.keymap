@@ -54,7 +54,7 @@
 
 #define CUSTOM_COMBOS \
     custom_combo_4_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_S KEY_O>; bindings = <&kp SPACE>; }; \
-    custom_combo_4_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; }; \
+    custom_combo_4_2    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; }; \
     custom_combo_3_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_S>;       bindings = <&kp TAB>;   }; \
     custom_combo_3_2    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_O>;       bindings = <&kp LALT>;   }; \
     custom_combo_3_3    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_T KEY_S KEY_O>;       bindings = <&kp LALT>;   }; \
