@@ -43,13 +43,13 @@
 
 #define TIMEOUT_COMBO_CUSTOM_LAYER 25
 
-#define ARTSEY_LAYER_CUSTOM                                            \
-		custom {                                                       \
-			label = "Custom";                                          \
-			bindings = <                                               \
-				&kp Q    &kp W  &kp E   &kp R                          \
-				&kp A    &kp S  &kp D   &kp F                          \
-			>;                                                         \
+#define ARTSEY_LAYER_CUSTOM                                             \
+    custom {                                                            \
+			label = "Custom";                                           \
+			bindings = <                                                \
+				&kp TAB      &kp Q  &kp W   &kp E                       \
+				&kp LCTRL    &kp A  &kp S   &kp D                       \
+                >;                                                      \
 		};
 
 #define CUSTOM_COMBOS \
