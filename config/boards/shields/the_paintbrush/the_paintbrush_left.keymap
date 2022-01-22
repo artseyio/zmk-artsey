@@ -41,22 +41,23 @@
 
 #define GLOBAL_COMBO_LAYER_FILTER 0 1 2 3 4 5 7 8
 
-#define TIMEOUT_COMBO_CUSTOM_LAYER 25
+#define TIMEOUT_COMBO_CUSTOM_LAYER 50
 
 #define ARTSEY_LAYER_CUSTOM                                             \
     custom {                                                            \
 			label = "Custom";                                           \
 			bindings = <                                                \
-				&kp TAB      &kp Q  &kp W   &kp E                       \
-				&kp LCTRL    &kp A  &kp S   &kp D                       \
+				&kp LSHIFT   &kp Q  &kp W   &kp E                       \
+				&kp SPACE    &kp A  &kp S   &kp D                       \
                 >;                                                      \
 		};
 
 #define CUSTOM_COMBOS \
+    custom_combo_4_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_S KEY_O>; bindings = <&kp SPACE>; }; \
     custom_combo_4_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; }; \
-    custom_combo_3_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_S>;       bindings = <&kp SPACE>;   }; \
-    custom_combo_3_2    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_O>;       bindings = <&kp ESC>;   }; \
-    custom_combo_3_3    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_T KEY_S KEY_O>;       bindings = <&kp ESC>;   }; \
+    custom_combo_3_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_S>;       bindings = <&kp TAB>;   }; \
+    custom_combo_3_2    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T KEY_O>;       bindings = <&kp LALT>;   }; \
+    custom_combo_3_3    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_T KEY_S KEY_O>;       bindings = <&kp LALT>;   }; \
     custom_combo_2_1    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_T>;             bindings = <&kp R>; }; \
     custom_combo_2_2    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_S>;             bindings = <&kp V>;     }; \
     custom_combo_2_3    { layers = <LAYER_ID_CUSTOM>; timeout-ms = <TIMEOUT_COMBO_CUSTOM_LAYER>; key-positions = <KEY_A KEY_O>;             bindings = <&kp F>; }; \
