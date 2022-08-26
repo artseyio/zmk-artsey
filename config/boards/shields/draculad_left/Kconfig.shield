@@ -1,0 +1,11 @@
+# Copyright (c) 2021 Mike "KemoNine" Crosson
+# SPDX-License-Identifier: MIT
+
+config SHIELD_CORNE_ARTSEY_LEFT
+	def_bool $(shields_list_contains,corne_artsey_left)
+
+config SHIELD_CORNE_5_COL_ARTSEY_LEFT
+	def_bool $(shields_list_contains,corne_5_col_artsey_left)
+
+config SHIELD_CORNE_5_COL_ARTSEY_LEFT_BIG
+	def_bool $(shields_list_contains,corne_5_col_artsey_left_big)
