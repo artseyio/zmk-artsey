@@ -75,6 +75,8 @@ jobs:
             shield: cradio_artsey_right
           - board: nice_nano_v2
             shield: cradio_artsey_thumb_right
+          - board: nice_nano_v2
+            shield: draculad_artsey_left_big
     steps:
       - name: Checkout
         uses: actions/checkout@v2

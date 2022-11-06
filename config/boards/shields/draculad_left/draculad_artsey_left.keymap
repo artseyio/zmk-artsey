@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2021 Mike "KemoNine" Crosson
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+// Enable ARTSEY Left
+#define ARTSEY_LEFT 1
+
+// ARTS Row
+#define KEY_A 3
+#define KEY_R 2
+#define KEY_T 1
+#define KEY_S 0
+// EYIO Row
+#define KEY_E 8
+#define KEY_Y 7
+#define KEY_I 6
+#define KEY_O 5
+
+// Define Offsets
+#define LEADING_NONES NONE(0,0, 0)
+#define MIDDLE_NONES NONE(0, 0, 1)
+#define TRAILING_NONES NONE(0, 0, 9)
+
+// Thumb buttons (used for BT combos)
+#define THUMB_1 15
+#define THUMB_2 16
+#define THUMB_3 17
+
+// Include main artsey.io keymap
+#include "../../../artsey.dtsi"
